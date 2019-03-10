@@ -25,7 +25,27 @@ let inputArg = process.argv.slice(3).join("+");
     // Venue location
     // Date of the Event (use moment to format this as "MM/DD/YYYY")
 
-
+    if (command === "concert-this"){
+        getConcert();
+    function getConcert (input) {
+            if (!input) {
+                var artist = "daughters";
+            } else {
+                var artist = inputArg;
+            }
+    
+        var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+            console.log(queryUrl);
+        axios.get(queryUrl).then(
+            function(response) {
+                console.log("Name of Venue: " + response.data[0].venue.name);
+                console.log("Location: " + response.data[0].venue.city);
+                console.log("Date: " + (moment(response.data[0].datetime)).format("MM/DD/YYYY"));
+            }
+          );
+    
+    };
+    }
 
 
     
@@ -74,7 +94,7 @@ let inputArg = process.argv.slice(3).join("+");
 if (command === "movie-this"){
     getMovie();
 function getMovie (input) {
-        if (input === "") {
+        if (!input) {
             var movie = "mr+nobody";
         } else {
             var movie = inputArg;
@@ -97,10 +117,6 @@ function getMovie (input) {
 
 };
 }
-// getMovie();
-
-// if (functionArg = "movie-this")
-
 
 
 
