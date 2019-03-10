@@ -16,4 +16,38 @@ Data is retrieved by sending requests using the axios node package to the Bands 
 <a href="https://manager.bandsintown.com/support/bandsintown-api">Bands in Town API</a><br>
 <br>
 Below are GIFS of each command in action:
+<br>
+<br>
+Get Upcoming Concert Information Using:
+<br>
+node liri.js concert-this [artist/band name here]
+<br>
+<img src="images/concert-this.gif">
+<br>
+<br>
+
+Get Spotify Song Information Using:
+<br>
+node liri.js spotify-this-song [song name here]
+<br>
+<img src="images/spotify-this-song.gif">
+<br>
+<br>
+
+Get Movie Information Using:
+<br>
+node liri.js movie-this [movie name here]
+<br>
+<img src="images/movie-this.gif">
+<br>
+<br>
+
+Do What it Says in the Log Using:
+<br>
+node liri.js do-what-it-says
+<br>
+<img src="images/do-what-it-says.gif">
+<br>
+
+
 </p>
