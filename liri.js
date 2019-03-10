@@ -10,7 +10,6 @@ var spotify = new Spotify(keys.spotify);
 let command = process.argv[2];
 let inputArg = process.argv.slice(3).join("+");
 
-
 // liri.js can take in one of the following commands:
 // concert-this
 // spotify-this-song
@@ -25,9 +24,10 @@ let inputArg = process.argv.slice(3).join("+");
 
     if (command === "concert-this"){
         getConcert();
+    };
 
     function getConcert (input) {
-            if (!input) {
+            if (!inputArg) {
                 var artist = "daughters";
             } else {
                 var artist = inputArg;
@@ -45,7 +45,6 @@ let inputArg = process.argv.slice(3).join("+");
             }
           );
     
-    }
     };
 
 // 2. node liri.js spotify-this-song '<song name here>'
@@ -60,6 +59,7 @@ let inputArg = process.argv.slice(3).join("+");
 
 if (command === "spotify-this-song"){
     getSpotify();
+};
 
 function getSpotify(input) {
     if (!inputArg) {
@@ -79,9 +79,7 @@ function getSpotify(input) {
       console.log("Preview: " + response.tracks.items[0].preview_url);
       console.log("-----------------------------------------------------");
     })
-}
 };
-
 
 // 3. node liri.js movie-this '<movie name here>'
 // This will output the following information to your terminal/bash window:
@@ -97,8 +95,9 @@ function getSpotify(input) {
 
 if (command === "movie-this"){
     getMovie();
+};
 function getMovie (input) {
-        if (!input) {
+        if (!inputArg) {
             var movie = "mr+nobody";
         } else {
             var movie = inputArg;
@@ -121,17 +120,16 @@ function getMovie (input) {
         }
       );
 
-}
 };
 
 // 4. node liri.js do-what-it-says
 
 // Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
 // It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
-// Edit the text in random.txt to test out the feature for movie-this and concert-this.
 
 if (command === "do-what-it-says"){
     getWhatItSays();
+};
 
 function getWhatItSays (input) {
     fs.readFile("random.txt","utf8",function(err,data){
@@ -143,6 +141,20 @@ function getWhatItSays (input) {
         inputArg = readCommand[1]
         console.log(command);
         console.log(inputArg);
+        newCommand(command,inputArg);
     })
-}
+};
+
+function newCommand(command,inputArg){
+    switch (command) {
+      case "concert-this":
+        getConcert(inputArg);
+        break;
+      case "spotify-this-song":
+        getSpotify(inputArg);
+        break;
+      case "movie-this":
+        getMovie(inputArg);
+        break;
+    }
 }
