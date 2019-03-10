@@ -7,6 +7,7 @@ LIRI can search Spotify for songs, Bands in Town for concerts, and OMDB for movi
 <br>
 Data is retrieved by sending requests using the axios node package to the Bands in Town, Spotify, and OMDB APIs.
 <br>
+<br>
 <strong>Technologies used:</strong> <br>
 <a href="https://www.npmjs.com/package/axios">Axios</a> <br>
 <a href="https://www.npmjs.com/package/moment">MomentJS</a> <br>

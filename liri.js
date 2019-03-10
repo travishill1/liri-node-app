@@ -6,7 +6,7 @@ moment().format();
 var axios = require("axios");
 var spotify = new Spotify(keys.spotify);
 
-let functionArg = process.argv[2];
+let command = process.argv[2];
 let inputArg = process.argv.slice(3).join("+");
 
 
@@ -71,21 +71,23 @@ let inputArg = process.argv.slice(3).join("+");
 //   * Actors in the movie.
 // If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
 // You'll use the axios package to retrieve data from the OMDB API. Like all of the in-class activities, the OMDB API requires an API key. You may use trilogy.
+if (command === "movie-this"){
+    getMovie();
 function getMovie (input) {
         if (input === "") {
-            var inputArg = "mr+nobody";
+            var movie = "mr+nobody";
         } else {
-            var inputArg = input;
+            var movie = inputArg;
         }
 
-    var queryUrl = "http://www.omdbapi.com/?t=" + inputArg + "&y=&plot=short&apikey=trilogy";
-
+    var queryUrl = "http://www.omdbapi.com/?apikey=trilogy&t=" + movie;
+        console.log(queryUrl);
     axios.get(queryUrl).then(
         function(response) {
           console.log('*Title of the Movie: ' + response.data.Title)
           console.log("*Release Year: " + response.data.Year);
-        //   console.log("*IMDB Rating: " + response.data.Ratings[0].Value);
-        //   console.log("*Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+          console.log("*IMDB Rating: " + response.data.Ratings[0].Value);
+          console.log("*Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
           console.log("*Country: " + response.data.Country);
           console.log("*Language: " + response.data.Language);
           console.log("*Plot: " + response.data.Plot);
@@ -94,7 +96,8 @@ function getMovie (input) {
       );
 
 };
-getMovie();
+}
+// getMovie();
 
 // if (functionArg = "movie-this")
 
